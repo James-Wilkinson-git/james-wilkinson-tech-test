@@ -13,7 +13,7 @@ $theme-colors: (
 body {
   color: #fff;
   font-family: "Baloo Tammudu 2", cursive;
-  background: #0f2231 url("../../assets/bgpattern.jpg");
+  background: #0f2231 url("../../assets/bgpattern.jpg") 0 0 repeat;
 }
 .col,
 .row {
@@ -21,9 +21,16 @@ body {
 }
 .wdBorderBox {
   border: 2px solid $outline;
+  box-shadow: 0 0 5px $highlight;
   padding: 5px;
+  margin: 10px 0;
   .col,
   .row {
     padding: 3px;
   }
+}
+.yourRentals {
+  background: rgba(0, 0, 0, 0.95);
+  box-shadow: 0 0 5px $highlight;
+  padding: 10px 5px;
 }
