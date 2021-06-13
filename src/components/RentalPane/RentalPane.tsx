@@ -9,7 +9,6 @@ export const RentalPane = () => {
         <Row>
           <Col>
             <h6>Your Rental</h6>
-            <Drone />
           </Col>
           <Col className="d-none d-md-block">&nbsp;</Col>
         </Row>
