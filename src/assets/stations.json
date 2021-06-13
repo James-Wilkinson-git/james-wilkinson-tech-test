@@ -1,0 +1,39 @@
+{
+  "stations": [
+    {
+      "name": "SoHo Station",
+      "drones": [
+        "Anafi",
+        "Breeze",
+        "CX-STARS",
+        "CX-32W",
+        "CX-20",
+        "RODEO F110",
+        "H42WH"
+      ]
+    },
+    {
+      "name": "Vauxhall Station",
+      "drones": [
+        "Nano QX",
+        "Solo",
+        "Mavic 2",
+        "Spark",
+        "Phantom 4",
+        "RODEO F150"
+      ]
+    },
+    {
+      "name": "Camden Station",
+      "drones": [
+        "Drone Pro",
+        "Stealth Pro",
+        "H78G",
+        "H66",
+        "X7",
+        "Phantom4",
+        "H40WH"
+      ]
+    }
+  ]
+}

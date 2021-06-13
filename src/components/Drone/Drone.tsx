@@ -7,11 +7,13 @@ export const Drone: FC<IDrone> = ({
   maxFlightTime,
   charge,
 }) => {
-  //Based on the supplied data we need to massage it a bit, this is where I would normally
+  // Based on the supplied data we need to massage it a bit, this is where I would normally
   // work with the backend team to see if we could get the data in a cleaner format as these
   // types of data manipulations are expensive to performance in JavaScript
   const imgSlug = encodeURI(model);
   const chargePercent = parseInt(charge.replace("%", ""));
+  const isCharging = chargePercent < 100;
+
   return (
     <div className="wdBorderBox">
       <Row>
@@ -36,7 +38,12 @@ export const Drone: FC<IDrone> = ({
       <Row>
         <Col>
           <small>Battery</small>
-          <ProgressBar variant="success" now={chargePercent} />
+          <ProgressBar
+            striped={isCharging}
+            animated={isCharging}
+            variant="success"
+            now={chargePercent}
+          />
         </Col>
       </Row>
     </div>
