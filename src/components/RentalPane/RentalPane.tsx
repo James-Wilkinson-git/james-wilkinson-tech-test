@@ -1,12 +1,14 @@
-import React, { FC, useContext, useEffect, useState } from "react";
+import { FC, useContext, useEffect, useState } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { RentalContext } from "../../containers/RentalContext/RentalContext";
 
 export const RentalPane: FC = () => {
   const { isLoading, rental, returnDrone } = useContext(RentalContext);
-  const [maxFlightTime, setMaxFlightTime] = useState<number>(0);
   const [timeRemaining, setTimeRemaining] = useState<number>(0);
 
+  //We need to wait for the data of rental to be populated once it it populate
+  //isLoading is set to false and we have access to the data to manipulate it
+  //and add to our local state.
   useEffect(() => {
     if (!isLoading) {
       const parseTime = parseInt(
@@ -14,8 +16,11 @@ export const RentalPane: FC = () => {
       );
       setTimeRemaining(parseTime);
     }
-  }, [isLoading]);
+  }, [isLoading, rental]);
 
+  //Use another useEffect to dynamically update state on component load
+  //this sets an interval that will be cleared when the component is unmounted
+  //take our current time and subtract a minute from it every second
   useEffect(() => {
     const interval = setInterval(() => {
       if (timeRemaining <= 0) {
@@ -26,9 +31,12 @@ export const RentalPane: FC = () => {
         setTimeRemaining(timeRemaining - 1);
       }
     }, 1000);
-
+    //This timeout is in 1 sec interval for demo purposes
+    //but we would set it to 60000ms instead so that the minutes
+    //matched the minutes the data came in it would also be more
+    //performant to poll for changes less frequently
     return () => clearInterval(interval);
-  }, [timeRemaining]);
+  });
 
   return (
     <div className="yourRentals fixed-bottom ">

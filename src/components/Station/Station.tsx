@@ -1,12 +1,10 @@
-import React, { FC, useContext, useEffect, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { Row } from "react-bootstrap";
 import { Drone } from "../Drone/Drone";
 import quadsFile from "../../assets/quads.json";
-import { RentalContext } from "../../containers/RentalContext/RentalContext";
 
 export const Station: FC<IStation> = ({ name, drones }) => {
   //State
-  const { isLoading, rental } = useContext(RentalContext);
   const [dronesList, setDronesList] = useState<IDrone[]>();
   // Drones
 
@@ -16,9 +14,9 @@ export const Station: FC<IStation> = ({ name, drones }) => {
   */
   useEffect(() => {
     // You would also normally implement a try catch to signal any errors in the non API processing part of fetching dynamic data.
-
     const fetchDronesList = () => {
-      //Get just the drones for this station
+      //Get just the drones for this station by comparing the
+      //large list of names with the names provided to this station as props
       const stationsDrones = quadsFile.quads.filter((drone) => {
         return drones.includes(drone.model);
       });
@@ -27,25 +25,7 @@ export const Station: FC<IStation> = ({ name, drones }) => {
     // You would also normally implement a try catch to signal any errors in the
     // non API processing part of fetching dynamic data.
     fetchDronesList();
-  }, []);
-
-  //Use Effect so we can listen to the state change of rental
-  useEffect(() => {
-    //Take in our rental object
-    const removeRentalDrone = (rental: IRental[]) => {
-      //Take in our current state of Stations and Drones and look for our
-      // Drone that we rented and remove it from the list
-      const updatedDronesList = dronesList?.filter((drone) => {
-        return drone.model !== rental[0].drone[0].model;
-      });
-      //Update our stations and drones list
-      setDronesList(updatedDronesList);
-    };
-    //Check that rental is defined
-    if (!isLoading) {
-      removeRentalDrone(rental);
-    }
-  }, [isLoading]);
+  });
 
   return (
     <Row className="mb-3">
