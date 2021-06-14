@@ -6,7 +6,7 @@ import { RentalContext } from "../../containers/RentalContext/RentalContext";
 
 export const Station: FC<IStation> = ({ name, drones }) => {
   //State
-  const { rental } = useContext(RentalContext);
+  const { isLoading, rental } = useContext(RentalContext);
   const [dronesList, setDronesList] = useState<IDrone[]>();
   // Drones
 
@@ -36,16 +36,16 @@ export const Station: FC<IStation> = ({ name, drones }) => {
       //Take in our current state of Stations and Drones and look for our
       // Drone that we rented and remove it from the list
       const updatedDronesList = dronesList?.filter((drone) => {
-        return drone.model !== rental[0].model;
+        return drone.model !== rental[0].drone[0].model;
       });
       //Update our stations and drones list
       setDronesList(updatedDronesList);
     };
     //Check that rental is defined
-    if (rental) {
+    if (!isLoading) {
       removeRentalDrone(rental);
     }
-  }, [rental]);
+  }, [isLoading]);
 
   return (
     <Row className="mb-3">

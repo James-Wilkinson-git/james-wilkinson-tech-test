@@ -5,15 +5,16 @@ interface IDrone {
   charge: string;
 }
 interface IRental {
-  model: string;
-  maxFlightTime: string;
+  drone: IDrone[];
+  isReturning: boolean;
 }
 interface IStation {
   name: string;
   drones: string[];
 }
 type RentalContextType = {
-  rental?: IRental[];
+  isLoading: boolean;
+  rental: IRental[];
   rentDrone: (drone: IDrone) => void;
   returnDrone: (drone: IDrone) => void;
 };
