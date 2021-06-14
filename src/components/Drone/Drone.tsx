@@ -14,7 +14,7 @@ export const Drone: FC<IDrone> = ({
   const imgSlug = encodeURI(model);
   const chargePercent = parseInt(charge.replace("%", ""));
   const isCharging = chargePercent < 100;
-  const { rentDrone } = useContext(RentalContext);
+  const { rental, rentDrone } = useContext(RentalContext);
   return (
     <div className="wdBorderBox">
       <Row>
@@ -33,7 +33,7 @@ export const Drone: FC<IDrone> = ({
           <p>
             <small>Max Flight Time: {maxFlightTime}</small>
           </p>
-          {chargePercent > 10 && (
+          {chargePercent > 10 && !rental && (
             <Button
               type="primary"
               onClick={() =>

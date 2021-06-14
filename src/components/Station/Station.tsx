@@ -24,17 +24,24 @@ export const Station: FC<IStation> = ({ name, drones }) => {
       });
       setDronesList(stationsDrones);
     };
-    // You would also normally implement a try catch to signal any errors in the non API processing part of fetching dynamic data.
+    // You would also normally implement a try catch to signal any errors in the
+    // non API processing part of fetching dynamic data.
     fetchDronesList();
   }, []);
 
+  //Use Effect so we can listen to the state change of rental
   useEffect(() => {
+    //Take in our rental object
     const removeRentalDrone = (rental: IRental[]) => {
+      //Take in our current state of Stations and Drones and look for our
+      // Drone that we rented and remove it from the list
       const updatedDronesList = dronesList?.filter((drone) => {
         return drone.model !== rental[0].model;
       });
+      //Update our stations and drones list
       setDronesList(updatedDronesList);
     };
+    //Check that rental is defined
     if (rental) {
       removeRentalDrone(rental);
     }
