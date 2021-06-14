@@ -12,12 +12,7 @@ import "./App.scss";
 //Entry point to the application rendered by index.tsx
 export const App: FC = () => {
   // States
-  const [rental, setRental] = useState<IRental[]>([
-    {
-      model: "",
-      maxFlightTime: "0",
-    },
-  ]);
+  const [rental, setRental] = useState<IRental[]>();
   const [stationsList, setStationsList] = useState<IStation[]>();
 
   // Stations
@@ -45,9 +40,12 @@ export const App: FC = () => {
     setRental([{ model: drone.model, maxFlightTime: drone.maxFlightTime }]);
     console.log(rental);
   };
+  const returnDrone = (drone: IDrone) => {
+    console.log(drone);
+  };
 
   return (
-    <RentalContext.Provider value={{ rental, rentDrone }}>
+    <RentalContext.Provider value={{ rental, rentDrone, returnDrone }}>
       <div className="App" data-testid="AppContainer">
         <Container>
           <Row className="mt-3">

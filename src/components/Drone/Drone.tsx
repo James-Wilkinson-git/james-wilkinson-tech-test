@@ -14,7 +14,7 @@ export const Drone: FC<IDrone> = ({
   const imgSlug = encodeURI(model);
   const chargePercent = parseInt(charge.replace("%", ""));
   const isCharging = chargePercent < 100;
-  const { rental, rentDrone } = useContext(RentalContext);
+  const { rentDrone } = useContext(RentalContext);
   return (
     <div className="wdBorderBox">
       <Row>

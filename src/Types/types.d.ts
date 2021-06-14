@@ -13,6 +13,7 @@ interface IStation {
   drones: string[];
 }
 type RentalContextType = {
-  rental: IRental[];
+  rental?: IRental[];
   rentDrone: (drone: IDrone) => void;
+  returnDrone: (drone: IDrone) => void;
 };

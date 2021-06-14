@@ -1,10 +1,12 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useContext, useEffect, useState } from "react";
 import { Row } from "react-bootstrap";
 import { Drone } from "../Drone/Drone";
 import quadsFile from "../../assets/quads.json";
+import { RentalContext } from "../../containers/RentalContext/RentalContext";
 
 export const Station: FC<IStation> = ({ name, drones }) => {
   //State
+  const { rental } = useContext(RentalContext);
   const [dronesList, setDronesList] = useState<IDrone[]>();
   // Drones
 
@@ -24,7 +26,20 @@ export const Station: FC<IStation> = ({ name, drones }) => {
     };
     // You would also normally implement a try catch to signal any errors in the non API processing part of fetching dynamic data.
     fetchDronesList();
-  }, [drones]);
+  }, []);
+
+  useEffect(() => {
+    const removeRentalDrone = (rental: IRental[]) => {
+      const updatedDronesList = dronesList?.filter((drone) => {
+        return drone.model !== rental[0].model;
+      });
+      setDronesList(updatedDronesList);
+    };
+    if (rental) {
+      removeRentalDrone(rental);
+    }
+  }, [rental]);
+
   return (
     <Row className="mb-3">
       <h2>{name}</h2>
