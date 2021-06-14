@@ -55,7 +55,13 @@ export const RentalPane: FC = () => {
                       <small>Time Remaining: {timeRemaining}</small>
                     </p>
 
-                    <Button type="primary">Return</Button>
+                    <Button
+                      type="primary"
+                      variant="info"
+                      onClick={() => returnDrone(rental[0].drone[0])}
+                    >
+                      Return
+                    </Button>
                   </Col>
                 </Row>
               </div>

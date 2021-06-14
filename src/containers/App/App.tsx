@@ -82,7 +82,7 @@ export const App: FC = () => {
             <Col className="d-none d-md-block"></Col>
           </Row>
         </Container>
-        <RentalPane />
+        {!isLoading && <RentalPane />}
       </div>
     </RentalContext.Provider>
   );
