@@ -25,7 +25,7 @@ export const Station: FC<IStation> = ({ name, drones }) => {
     // You would also normally implement a try catch to signal any errors in the
     // non API processing part of fetching dynamic data.
     fetchDronesList();
-  });
+  }, [drones]);
 
   return (
     <Row className="mb-3">

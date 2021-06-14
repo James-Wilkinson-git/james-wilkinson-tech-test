@@ -75,12 +75,16 @@ export const App: FC = () => {
           <Row>
             <Col>
               {stationsList &&
-                stationsList.map((station, i) => {
+                stationsList.map((station) => {
                   return (
                     <Station
                       name={station.name}
-                      drones={station.drones}
-                      key={i}
+                      // we need to copy the object here because React only detects state changes
+                      // at the top level so since we are modify this state we make a copy
+                      // and react now compares deep state
+                      drones={[...station.drones]}
+                      //React also requires a unique key not just an index number to find which state object to update
+                      key={station.name}
                     />
                   );
                 })}
