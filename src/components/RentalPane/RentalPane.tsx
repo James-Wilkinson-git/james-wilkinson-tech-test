@@ -18,7 +18,13 @@ export const RentalPane: FC = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setTimeRemaining(timeRemaining - 1);
+      if (timeRemaining <= 0) {
+        //Crash and return
+        clearInterval(interval);
+        returnDrone(rental[0].drone[0]);
+      } else {
+        setTimeRemaining(timeRemaining - 1);
+      }
     }, 1000);
 
     return () => clearInterval(interval);
@@ -30,7 +36,7 @@ export const RentalPane: FC = () => {
         <Row>
           <Col>
             <h6>Your Rental</h6>
-            {!isLoading && (
+            {!isLoading && timeRemaining > 0 && (
               <div className="wdBorderBox">
                 <Row>
                   <Col>
@@ -54,7 +60,7 @@ export const RentalPane: FC = () => {
                 </Row>
               </div>
             )}
-            <small>Rent a drone to begin</small>
+            {isLoading && <small>Rent a drone to begin</small>}
           </Col>
           <Col className="d-none d-md-block">&nbsp;</Col>
         </Row>
