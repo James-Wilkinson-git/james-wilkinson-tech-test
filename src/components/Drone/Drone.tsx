@@ -1,6 +1,7 @@
-import React, { FC } from "react";
+import React, { FC, useContext } from "react";
 import { Button, Col, ProgressBar, Row } from "react-bootstrap";
-import { IDrone } from "../Station/Station";
+import { RentalContext } from "../../containers/RentalContext/RentalContext";
+
 export const Drone: FC<IDrone> = ({
   manufacturer,
   model,
@@ -13,7 +14,7 @@ export const Drone: FC<IDrone> = ({
   const imgSlug = encodeURI(model);
   const chargePercent = parseInt(charge.replace("%", ""));
   const isCharging = chargePercent < 100;
-
+  const { rental, rentDrone } = useContext(RentalContext);
   return (
     <div className="wdBorderBox">
       <Row>
@@ -32,7 +33,16 @@ export const Drone: FC<IDrone> = ({
           <p>
             <small>Max Flight Time: {maxFlightTime}</small>
           </p>
-          {chargePercent > 10 && <Button type="primary">Rent</Button>}
+          {chargePercent > 10 && (
+            <Button
+              type="primary"
+              onClick={() =>
+                rentDrone({ manufacturer, model, maxFlightTime, charge })
+              }
+            >
+              Rent
+            </Button>
+          )}
         </Col>
       </Row>
       <Row>

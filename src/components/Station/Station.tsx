@@ -1,14 +1,8 @@
 import React, { FC, useEffect, useState } from "react";
 import { Row } from "react-bootstrap";
 import { Drone } from "../Drone/Drone";
-import { IStation } from "../../containers/App/App";
 import quadsFile from "../../assets/quads.json";
-export interface IDrone {
-  manufacturer: string;
-  model: string;
-  maxFlightTime: string;
-  charge: string;
-}
+
 export const Station: FC<IStation> = ({ name, drones }) => {
   //State
   const [dronesList, setDronesList] = useState<IDrone[]>();
