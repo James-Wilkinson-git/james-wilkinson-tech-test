@@ -1,5 +1,5 @@
 //React Imports
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import _ from "lodash";
 //Self Imports
@@ -28,39 +28,52 @@ export const App: FC = () => {
     stationsFile.stations
   );
   // Drone Rental
+  //Pass this function to the context provider so all other components can call this function
   const rentDrone = (drone: IDrone) => {
+    //Grab the stations and find the one that has this drone in it
     const updateStations = stationsList?.map((station) => {
       if (station.drones.includes(drone.model)) {
+        //take that drone out out of the array
         _.pull(station.drones, drone.model);
+        //and return the station back
         return station;
       } else {
+        //if its not in that station return the station unchanged
         return station;
       }
     });
+    //Update our state with our new set of stations
     setStationsList(updateStations);
-    console.log(updateStations);
+    //Pass the drone object around to use throughout the context
     setRental([
       {
         drone: [drone],
         isReturning: false,
       },
     ]);
+    //Tell all other context listeners that we are done setting the rental
     setIsLoading(false);
   };
 
+  // Pass a function to the context provider for returning a drone
   const returnDrone = (drone: IDrone) => {
+    //Set loading back to true so the tray hides and anything relying on data doesn't evaluate.
     setIsLoading(true);
-    // this is putting the rental back in all the empty slots oops
+    //A variable for if we found a spot to return the done yet
+    let returned = false;
+    //Loop through all the stations and see if there is an empty space
     const returnedStationList = stationsList.map((station) => {
-      if (station.drones.length < 9) {
+      //if we find a space push the drone in and set our variable so we don't add this to all stations with a spot
+      if (station.drones.length < 9 && !returned) {
         station.drones.push(drone.model);
+        returned = true;
       } else {
         console.error("all stations are full");
       }
       return station;
     });
+    //Update our state to show in the UI the drone has returned
     setStationsList(returnedStationList);
-    console.log(returnedStationList);
   };
 
   return (
