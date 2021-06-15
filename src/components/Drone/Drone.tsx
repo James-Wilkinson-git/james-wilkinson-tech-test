@@ -16,7 +16,7 @@ export const Drone: FC<IDrone> = ({
   const isCharging = chargePercent < 100;
   const { isLoading, rental, rentDrone } = useContext(RentalContext);
   return (
-    <div className="wdBorderBox">
+    <div className="wdBorderBox" data-testid="drone">
       <Row>
         <Col>
           <img
@@ -39,6 +39,7 @@ export const Drone: FC<IDrone> = ({
               onClick={() =>
                 rentDrone({ manufacturer, model, maxFlightTime, charge })
               }
+              data-testid="rentBtn"
             >
               Rent
             </Button>

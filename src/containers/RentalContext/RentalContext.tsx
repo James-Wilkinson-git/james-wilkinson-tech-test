@@ -5,7 +5,6 @@ export const RentalContext = createContext<RentalContextType>({
   rental: [
     {
       drone: [],
-      isReturning: false,
     },
   ],
   rentDrone: (drone: IDrone) => {},

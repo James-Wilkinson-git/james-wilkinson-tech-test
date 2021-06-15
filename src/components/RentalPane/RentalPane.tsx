@@ -45,7 +45,7 @@ export const RentalPane: FC = () => {
           <Col>
             <h6>Your Rental</h6>
             {!isLoading && timeRemaining > 0 && (
-              <div className="wdBorderBox">
+              <div className="wdBorderBox" data-testid="rentedDrone">
                 <Row>
                   <Col>
                     <img

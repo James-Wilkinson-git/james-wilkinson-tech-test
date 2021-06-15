@@ -16,7 +16,6 @@ export const App: FC = () => {
   const [rental, setRental] = useState<IRental[]>([
     {
       drone: [],
-      isReturning: false,
     },
   ]);
   const [isLoading, setIsLoading] = useState(true);
@@ -48,7 +47,6 @@ export const App: FC = () => {
     setRental([
       {
         drone: [drone],
-        isReturning: false,
       },
     ]);
     //Tell all other context listeners that we are done setting the rental
@@ -64,7 +62,7 @@ export const App: FC = () => {
     //Loop through all the stations and see if there is an empty space
     const returnedStationList = stationsList.map((station) => {
       //if we find a space push the drone in and set our variable so we don't add this to all stations with a spot
-      if (station.drones.length < 9 && !returned) {
+      if (station.drones.length <= 9 && !returned) {
         station.drones.push(drone.model);
         returned = true;
       } else {

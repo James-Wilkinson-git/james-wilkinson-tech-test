@@ -28,12 +28,14 @@ export const Station: FC<IStation> = ({ name, drones }) => {
   }, [drones]);
 
   return (
-    <Row className="mb-3">
-      <h2>{name}</h2>
-      {dronesList &&
-        dronesList.map((drone, i) => {
-          return <Drone {...drone} key={i} />;
-        })}
-    </Row>
+    <div data-testid="station">
+      <Row className="mb-3">
+        <h2>{name}</h2>
+        {dronesList &&
+          dronesList.map((drone, i) => {
+            return <Drone {...drone} key={i} />;
+          })}
+      </Row>
+    </div>
   );
 };

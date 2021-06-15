@@ -23,6 +23,8 @@ You will also see any lint errors in the console.
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
+Unit test are largely just testing rendering logic, and not interactive as I am new to the DOM Testing Library that is the new standard in CRA.
+
 ### `npm run build`
 
 Builds the app for production to the `build` folder.\
@@ -35,7 +37,7 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ## Testing
 
-I executed manual tests as my expertise in testing is lacking and I was running out of time. On load the there should be 3 stations populated with drones, and no duplicated.
+I executed manual tests as my expertise in unit testing is an area I am still improving on. I however did write some automated tests for the dynamic rendering which you can run above with `npm test`
 
 Clicking on rent should remove the drone from the station and put it into your rental tray.
 
@@ -43,13 +45,15 @@ While your drone is out you should see a countdown, this is set to reduce every 
 
 If you press return in the rental tray it will also remove from the rental tray, hide the rental tray, and then repopulate in the list.
 
+Returning a drone puts it in the first available station, test this by renting drones from the 2nd or 3rd station and returning them and see them in the first station, and the same for the second station until the 1st and second station are full.
+
 Once one drone is rented no other drones can be rented and the rent button should not appear.
 
 Drones have an initial charge, if the charge is less than 10% it also can not be rented. Verified quads.json and UI to see which drone should not be able to be rented.
 
 The application doesn't have persistent state, so refreshing the browser are any time will take you back to the beginning state.
 
-I started work on battery charging but ran out of time so it is meerly visual, if the drone is at a station and not at 100% it is charging and the UI shows this with strips and animation, if the drone is at 100% the bar is solid green.
+I started work on battery charging but it is meerly visual, if the drone is at a station and not at 100% it is charging and the UI shows this with strips and animation, if the drone is at 100% the bar is solid green.
 
 ## Copyrights
 

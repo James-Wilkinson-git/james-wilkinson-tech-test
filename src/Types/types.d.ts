@@ -6,7 +6,6 @@ interface IDrone {
 }
 interface IRental {
   drone: IDrone[];
-  isReturning: boolean;
 }
 interface IStation {
   name: string;
