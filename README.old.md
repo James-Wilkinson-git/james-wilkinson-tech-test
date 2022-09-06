@@ -1,13 +1,9 @@
-# Ubisoft Club Mobile front-end test
+# Mobile front-end test
 
 
 Please read and understand the following situation and then represent it by a small *React* based application. You have one week to deliver your project including source code, npm scripts, and documentation explaining the procedure to compile and execute the application as well as your tests.
 
 We are aware that this project will have to be done alongside your regular activities. Allocate proper time and effort without going overboard. A full day (8 hours) should be enough to deliver a good quality project. Don't spend too much time on over-engineering or future-proofing.
-
-The goal of this assignment is to create a *React* based application that will simulate a scenario set in the WATCH_DOGS universe:
-
-*Since the drone accident at O'Hare Airport that killed 65 passengers back in 2017, drone acquisition and ownership has been made illegal. However, you can now rent them from ctOS drone-sharing stations for short periods of time, and use them according to a severe End User License Agreement...*
 
 
 ## Getting Started
@@ -15,12 +11,6 @@ The goal of this assignment is to create a *React* based application that will s
 Given that you will be creating a React application we recommend using Create React App to get started (for instructions on creating an application please refer to their documentation found [here](https://github.com/facebook/create-react-app#creating-an-app)).
 
 While we recommend using Create React App if you have another preferred way for building React applications feel free to use it.
-
-## Submission
-
-Feel free to commit and push to this repository as often as you like. Once you have finished developing your application and made your final push please notify your recruiter so that we can review your work.
-
-**Note:** Once you have told the recruiter you have finished with your test your access to the project will be changed and you'll no longer be able to push or pull from the project.
 
 ## Scope
 
